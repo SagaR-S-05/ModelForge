@@ -2,10 +2,7 @@ from flask import Flask,render_template,request,session
 from werkzeug.datastructures import FileStorage
 import pandas as pd
 import pickle
-from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LogisticRegression,LinearRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsRegressor   
+from sklearn.preprocessing import LabelEncoder 
 from sklearn.ensemble import RandomForestRegressor
 import matplotlib
 matplotlib.use('Agg')
