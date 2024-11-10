@@ -1,0 +1,11 @@
+design/
+static/
+.venv/
+*.ipynb
+*.csv
+*.json
+*.txt
+*.pkl
+*.log
+*.png
+backend/__pycache__/
