@@ -34,7 +34,7 @@ def label_encoder(df,out):
     return df
 
 def init_model(model_type):
-    models_list=open("../Models_list.txt","r").readlines()
+    models_list=open("./static/Models_list.txt","r").readlines()
     for model in models_list:
         if model.startswith("#") or model.startswith("from sklearn.datasets"):
             continue
@@ -81,7 +81,7 @@ def file():
     f=request.files["file"]
     df=load_data(f)
     data=df.copy()
-    with open(f"data/{f.filename}.data","wb") as file:
+    with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
     return render_template("file.html",data=data,filename=f.filename)
@@ -89,7 +89,7 @@ def file():
 @app.route("/file/result",methods=["POST"])
 def file_result():
     filename=session["filename"]
-    with open(f"data/{filename}.data","rb") as file:
+    with open(f"Test-data/{filename}.data","rb") as file:
         data=pickle.load(file)
     feature=request.form["feature"]
     model_type=request.form["model"]
