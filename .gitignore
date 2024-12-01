@@ -8,4 +8,5 @@ static/
 *.pkl
 *.log
 *.png
+!model-forge-logo.png
 backend/__pycache__/
