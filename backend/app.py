@@ -6,6 +6,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 import matplotlib
 matplotlib.use('Agg')
+from sklearn.metrics import ConfusionMatrixDisplay,confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 app=Flask(__name__)
@@ -71,6 +72,27 @@ def save_image(df,out,model):
     plt.close()
     return image_name
 
+def conf_mat(df,out,model):
+    confusionmatrix=confusion_matrix(df[out],model.predict(df.drop(columns=[out])))
+    cm_display = ConfusionMatrixDisplay(confusion_matrix = confusionmatrix)
+    model_name=model.__class__.__name__
+    print("Classifier" in model.__class__.__name__ )
+    image_name=f"./static/images/{model_name}_confusion.png"
+    cm_display.plot()
+    plt.savefig(image_name)
+    plt.close()
+    return image_name
+
+def Model_list():
+    models_list=open("./static/Models_list.txt","r").readlines()
+    new_list=[]
+    for model in models_list:
+        if model.startswith("#") or model.startswith("from sklearn.datasets"):
+            continue
+        if model.endswith("\n"):
+            model=model.replace("\n","")
+        new_list.append(model.strip().split("import ")[1])
+    return new_list
 
 @app.route("/")
 def index():
@@ -84,7 +106,7 @@ def file():
     with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
-    return render_template("file.html",data=data,filename=f.filename)
+    return render_template("index.html",data=data,filename=f.filename,render=True,models=Model_list())
 
 @app.route("/file/result",methods=["POST"])
 def file_result():
@@ -99,18 +121,25 @@ def file_result():
         return render_template("error.html",error=[feature,df,filename])
     model,model_path=train_model(df,feature,model_type)
     image="."+save_image(df,feature,model)
-    print(image)
+    image_con=False
+    if "Classifier" in model.__class__.__name__:
+        image_con="."+conf_mat(df,feature,model)
+    print(image,image_con)
     predict=model.predict(df.drop(columns=[feature]))
     actual=df[feature]
     score=model.score(df.drop(columns=[feature]),df[feature])
     max_value=max(df[feature])
     min_value=min(df[feature])
-    return render_template( "file.html",data=data,filename=filename,
+    return render_template( "index.html",data=data,filename=filename,
                             image=image,model_path="."+model_path,
                             score=score,predict=predict,feature=feature,len=len
-                            ,activate=True,max_value=max_value,min_value=min_value)
+                            ,activate=True,max_value=max_value,min_value=min_value,
+                            confusionMatrix=image_con
+                            ,render=True,
+                            )
 
 
 if __name__=="__main__":
     app.run(debug=True)
+    # print(Model_list())
     
