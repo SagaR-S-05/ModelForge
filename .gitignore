@@ -7,3 +7,4 @@ design/
 !model-forge-logo.png
 backend/__pycache__/
 unstructured
+*.excalidraw
