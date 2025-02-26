@@ -12,7 +12,6 @@
       <p>File Name: <strong>{{filename}}</strong></p>
    
       <form action="/file/result" method="post">
-        <!-- Left side - Chart/Table -->
         <div class="chart-container">
           <h3>Select the output feature of your model:</h3>
           <div class="fixTableHead">
@@ -20,7 +19,7 @@
               <thead>
                 {% for feature in data.columns %}
                 <th>
-                  <input type="radio" name="feature" value="{{feature}}" />
+                  <input type="radio" name="feature" value="{{feature}}" required/>
                   {{feature}}
                 </th>
                 {% endfor %}
