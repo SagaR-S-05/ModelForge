@@ -28,7 +28,7 @@ table {
   width: 100%;
 }
 
-div {
+.button-container {
   display: flex;
   justify-content: left;
   margin-top: 10px;

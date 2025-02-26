@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <link rel="stylesheet" href="../static/style.css" />
-</head>
+  <body>
+    <p>File Name: {{filename}}</p>
+    <p>{{model_name1}} Score: {{score1*100}}%</p>
 
-<body>
-  <p>File Name: {{filename}}</p>
-  <p>Score 1: {{score1*100}}%</p>
-  {%if score2%}
-  <p>Score 2: {{score2*100}}%</p>
-  {%endif%}
-  <img src="{{image1}}" alt="image" />
-  {%if confusionMatrix1%}
-  <img src="{{confusionMatrix1}}" alt="confusion" />
-  {%endif%} {%if image2%}
-  <img src="{{image2}}" alt="image" />
-  {%endif%} {%if confusionMatrix2%}
-  <img src="{{confusionMatrix2}}" alt="confusion" />
-  {%endif%}
-  {%if compare_image%}
-  <img src="{{compare_image}}" alt="compare" />
-  {%endif%}
-  <a href="{{model_path}}" download="{{filename}}">
-    <button type="button">Download</button>
-  </a>
-</body>
-
+    <img src="{{image1}}" alt="image" />
+    {%if confusionMatrix1%}
+    <img src="{{confusionMatrix1}}" alt="confusion" />
+    {%endif%}
+    <a href="{{model_path1}}" download="{{filename}}">
+      <button type="button">Download</button>
+    </a>
+    {%if score2%}
+    <p>{{model_name2}} Score: {{score2*100}}%</p>
+    <img src="{{image2}}" alt="image" />
+    <a href="{{model_path2}}" download="{{filename}}">
+      <button type="button">Download</button>
+    </a>
+    {%endif%} {%if confusionMatrix2%}
+    <img src="{{confusionMatrix2}}" alt="confusion" />
+    {%endif%} {%if compare_image%}
+    <img src="{{compare_image}}" alt="compare" />
+    {%endif%}
+  </body>
 </html>

@@ -33,19 +33,19 @@
       </div>
       <br />
       <div>
-        <label for="model1">Model:</label>
+        <label for="model1">Model 1:</label>
         <select name="model1" id="model1">
           {%if models%} {%for i in models%}
           <option value="{{i}}">{{i}}</option>
           {%endfor%} {%endif%}
         </select>
-        <br />
-        <br />
+        <br/>
+        <br/>
         {%if model_based%}
-        <label for="model2">Model:</label>
+        <label for="model2">Model 2:</label>
         <select name="model2" id="model2">
           {%if models%} {%for i in models%}
-          <option value="{{i}}">{{i}}</option>
+            <option value="{{i}}">{{i}}</option>
           {%endfor%} {%endif%}
         </select>
         {%endif%}
@@ -67,7 +67,7 @@
         {% endfor %}
       </select>
       {%endif%}
-      <div>
+      <div class="button-container">
         <button type="submit">Submit</button>
       </div>
     </form>

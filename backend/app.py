@@ -24,7 +24,7 @@ def file():
     with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
-    return render_template("file.html",data=data,filename=f.filename,model_based=model_based,multi_column=multi_column,models=Model_list())
+    return render_template("file_content.html",data=data,filename=f.filename,model_based=model_based,multi_column=multi_column,models=Model_list())
 
 @app.route("/file/result",methods=["POST"])
 def file_result():
@@ -71,9 +71,12 @@ def file_result():
         score2=model2.score(df.drop(columns=[feature]),df[feature])
         max_value=max(df[feature])
         min_value=min(df[feature])
-        return render_template( "index1.html",filename=filename,
+        return render_template( "results.html",filename=filename,
                                 image1=image1,image2=image2
-                                ,model_path="."+model_path1,
+                                ,model_path1="."+model_path1,
+                                model_path2="."+model_path2,
+                                model_name1=model1.__class__.__name__,
+                                model_name2=model2.__class__.__name__,
                                 score1=score1,score2=score2,
                                 predict2=predict2,predict1=predict1,feature=feature,
                                 confusionMatrix1=image_con1,
@@ -97,8 +100,9 @@ def file_result():
     score1=model1.score(df.drop(columns=[feature]),df[feature]) 
     max_value=max(df[feature])
     min_value=min(df[feature])
-    return render_template( "index1.html",filename=filename,
-                            image1=image1,model_path="."+model_path1,
+    return render_template( "results.html",filename=filename,
+                            image1=image1,model_path1="."+model_path1,
+                            model_name1=model1.__class__.__name__,
                             score1=score1,predict1=predict1,feature=feature,
                             confusionMatrix1=image_con1,
                             compare_image=compare_image

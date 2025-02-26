@@ -1,4 +1,3 @@
-from flask import Flask,render_template,request,session
 from werkzeug.datastructures import FileStorage
 import pandas as pd
 import pickle
@@ -6,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 import matplotlib
 matplotlib.use('Agg')
-from sklearn.metrics import ConfusionMatrixDisplay,confusion_matrix
+from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -70,7 +69,6 @@ def save_image(df,out,model,model_num):
 
 def conf_mat(df,out,model):
     confusionmatrix=confusion_matrix(df[out],model.predict(df.drop(columns=[out])))
-    cm_display = ConfusionMatrixDisplay(confusion_matrix = confusionmatrix)
     print(confusionmatrix)
     model_name=model.__class__.__name__
     print("Classifier" in model.__class__.__name__ )
