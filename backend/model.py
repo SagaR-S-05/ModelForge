@@ -54,7 +54,7 @@ def train_model(df,out,model_type):
         pickle.dump(model, f)
     return model,model_path
 
-def save_image(df,out,model):
+def save_image(df,out,model,model_num):
     plt.ioff()
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x=df[out], y=model.predict(df.drop(columns=[out])), hue=df[out], palette='Set1')
@@ -63,7 +63,7 @@ def save_image(df,out,model):
     plt.xlabel('Actual Values')
     plt.ylabel('Predicted Values')
     plt.tight_layout()
-    image_name=f"./static/images/{model_name}_scatter.png"
+    image_name=f"./static/images/{model_name}{model_num}_scatter.png"
     plt.savefig(image_name)
     plt.close()
     return image_name
@@ -71,10 +71,13 @@ def save_image(df,out,model):
 def conf_mat(df,out,model):
     confusionmatrix=confusion_matrix(df[out],model.predict(df.drop(columns=[out])))
     cm_display = ConfusionMatrixDisplay(confusion_matrix = confusionmatrix)
+    print(confusionmatrix)
     model_name=model.__class__.__name__
     print("Classifier" in model.__class__.__name__ )
     image_name=f"./static/images/{model_name}_confusion.png"
-    cm_display.plot()
+    # cm_display.plot()
+    plt.figure(figsize=(6, 6))
+    sns.heatmap(confusionmatrix, annot=True,cmap="GnBu")
     plt.savefig(image_name)
     plt.close()
     return image_name

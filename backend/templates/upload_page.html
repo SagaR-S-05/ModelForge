@@ -114,8 +114,8 @@
             <div class="options">
                 <p>Choose the required parameter:</p>
                 <div class="checkbox-group">
-                    <label><input type="checkbox" name="option1" value="model_based"> Model-based comparison</label>
-                    <label><input type="checkbox" name="option2" value="multi_column"> Multi-column comparison</label>
+                    <label><input type="checkbox" name="model_based" value={{True}}> Model-based comparison</label>
+                    <label><input type="checkbox" name="multi_column" value={{True}}> Multi-column comparison</label>
                 </div>
             </div>
             <div class="submit-container">
@@ -123,101 +123,5 @@
             </div>
         </form>
     </div>
-</body>
-
-
-  
-    {%if render%}
-    <p>File Name: {{filename}}</p>
-    <form action="/file/result" method="post">
-        {%if not activate%}
-        <p>Select the output feature of your model:</p>
-        {%endif%}
-        <div class="fixTableHead">
-            <table border="1" id="table">
-                <thead>
-                    {% for feature in data.columns %}
-                    <th>
-                        {%if not activate%}
-                        <input type="radio" name="feature" value="{{feature}}"/>
-                        {%endif%}
-                        {{feature}}</th>
-                    {% endfor %}
-                </thead>
-                <tbody id="tableBody">
-                    {% for index,row in data.iterrows() %}
-                        <tr>
-                            {% for column in data.columns %}
-                                <td>{{row[column]}}</td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {%if not activate%}
-        <div>
-            <label for="model">Model:</label>
-            <select name="model" id="model">
-                
-                {%if models%}
-                {%for i in models%}
-                <option value="{{i}}">{{i}}</option>
-                {%endfor%}
-                {%endif%}
-            </select>
-        </div>
-        <div style="display: flex;justify-content: left; margin-top: 10px;padding: 10px;">
-            <button type="submit" style="width: 100px;height: 30px;background-color: #000000;color: #fff;border-radius: 5px;border: none;">Submit</button>
-        </div>
-        {%endif%}
-    </form>
-    {%if activate%}
-    <p>Score: {{score*100}}%</p>
-    <!--<canvas id="myChart" style="width:100%;max-width:900px;padding-left: 300px;"></canvas>-->
-    <img src="{{image}}" alt="image">
-    {%if confusionMatrix%}
-    <img src="{{confusionMatrix}}" alt="confusion">
-    {%endif%}
-    <a href="{{model_path}}" download="{{filename}}">
-        <button type="button" style="width: 100px;height: 30px;background-color: #000000;color: #fff;border-radius: 5px;border: none;">Download</button>
-    </a>
-    <script>
-        let xyValues = [];
-
-        {%if activate%}
-        {%for i in range(len(predict))%}
-        xyValues.push({x:{{data[feature][i]}},y:{{predict[i]}}})
-        {%endfor%}
-        {%endif%}
-
-        new Chart("myChart", {
-            type: "scatter",
-            data: {
-                labels: ["0","1"],
-                datasets: [
-                    {
-                        pointRadius: 4,
-                        pointBackgroundColor: "rgb(0,0,255)",
-                        data: xyValues,
-                    },
-                ],
-            },
-            options: {
-                legend: {
-                    display: true,
-                    labels: {
-                        color: 'rgb(255, 99, 132)'
-                    }
-                },
-                scales: {
-                    xAxes: [{ ticks: { min: {{min_value-0.1}}, max: {{max_value+0.1}} } }],
-                    yAxes: [{ ticks: { min:{{min_value-0.1}}, max: {{max_value+0.1}} } }],
-                },
-            },
-});
-    </script>
-    {%endif%}
-    {%endif%}
 </body>
 </html>

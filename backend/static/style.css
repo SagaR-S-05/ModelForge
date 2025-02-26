@@ -8,6 +8,13 @@
     top: 0;
 }
 
+
+
+img{
+    width: 700px;
+    height: 600px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

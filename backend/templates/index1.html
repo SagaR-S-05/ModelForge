@@ -7,14 +7,6 @@
     <link rel="stylesheet" href="../static/style.css" />
   </head>
   <body>
-    <form action="/file" method="post" enctype="multipart/form-data">
-      <p>Upload the file:</p>
-      <input type="file" name="file" id="fileInput" />
-      <br />
-      <br />
-      
-      <button type="submit">Upload</button>
-    </form>
     {%if render%}
     <p>File Name: {{filename}}</p>
     <form action="/file/result" method="post">
@@ -44,25 +36,42 @@
         </table>
       </div>
       <br />
-      <div>
-        <label for="model">compare two models:</label>
-        <radio-group>
-            <input type="radio" name="activate" value="True" id="activate" />
-            <label for="activate">Yes</label>
-            <input type="radio" name="activate" value="False" id="deactivate" />
-            <label for="deactivate">No</label>
-        </radio-group>
-      </div>
-      <br>
       {%if not activate%}
       <div>
-        <label for="model">Model:</label>
-        <select name="model" id="model">
+        <label for="model1">Model:</label>
+        <select name="model1" id="model1">
           {%if models%} {%for i in models%}
           <option value="{{i}}">{{i}}</option>
           {%endfor%} {%endif%}
         </select>
+        <br />
+        <br />
+        {%if model_based%}
+        <label for="model2">Model:</label>
+        <select name="model2" id="model2">
+          {%if models%} {%for i in models%}
+          <option value="{{i}}">{{i}}</option>
+          {%endfor%} {%endif%}
+        </select>
+        {%endif%}
       </div>
+      <br/>
+      {%if multi_column%}
+      <label for="feature1">feature1:</label>
+      <select name="feature1" id="feature1">
+        {% for feature in data.columns %}
+          <option value="{{feature}}">{{feature}}</option>
+        {% endfor %}
+      </select>
+      <br />
+      <br />
+      <label for="feature2">feature2:</label>
+      <select name="feature2" id="feature2">
+        {% for feature in data.columns %}
+          <option value="{{feature}}">{{feature}}</option>
+        {% endfor %}
+      </select>
+      {%endif%}
       <div
         style="
           display: flex;
@@ -88,11 +97,18 @@
       {%endif%}
     </form>
     {%if activate%}
-    <p>Score: {{score*100}}%</p>
+    <p>Score 1: {{score1*100}}%</p>
+    {%if score2%}
+    <p>Score 2: {{score2*100}}%</p>
+    {%endif%}
     <!--<canvas id="myChart" style="width:100%;max-width:900px;padding-left: 300px;"></canvas>-->
-    <img src="{{image}}" alt="image" />
-    {%if confusionMatrix%}
-    <img src="{{confusionMatrix}}" alt="confusion" />
+    <img src="{{image1}}" alt="image" />
+    {%if confusionMatrix1%}
+    <img src="{{confusionMatrix1}}" alt="confusion" />
+    {%endif%} {%if image2%}
+    <img src="{{image2}}" alt="image" />
+    {%endif%} {%if confusionMatrix2%}
+    <img src="{{confusionMatrix2}}" alt="confusion" />
     {%endif%}
     <a href="{{model_path}}" download="{{filename}}">
       <button
@@ -113,8 +129,8 @@
               let xyValues = [];
 
               {%if activate%}
-              {%for i in range(len(predict))%}
-              xyValues.push({x:{{data[feature][i]}},y:{{predict[i]}}})
+              {%for i in range(len(predict1))%}
+              xyValues.push({x:{{data[feature][i]}},y:{{predict1[i]}}})
               {%endfor%}
               {%endif%}
 
