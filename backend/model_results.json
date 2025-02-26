@@ -1,14 +1,10 @@
 {
-    "LogisticRegression": {
-        "score": 95,
-        "plot": "../static/images/LogisticRegression_scatter.png"
-    },
     "KNeighborsClassifier": {
-        "score": 95,
+        "score": 72,
         "plot": "../static/images/KNeighborsClassifier_scatter.png"
     },
     "SVC": {
-        "score": 94,
+        "score": 80,
         "plot": "../static/images/SVC_scatter.png"
     },
     "DecisionTreeClassifier": {
@@ -16,91 +12,99 @@
         "plot": "../static/images/DecisionTreeClassifier_scatter.png"
     },
     "RandomForestClassifier": {
-        "score": 95,
+        "score": 100,
         "plot": "../static/images/RandomForestClassifier_scatter.png"
     },
     "GradientBoostingClassifier": {
-        "score": 95,
+        "score": 94,
         "plot": "../static/images/GradientBoostingClassifier_scatter.png"
     },
     "AdaBoostClassifier": {
-        "score": 97,
+        "score": 91,
         "plot": "../static/images/AdaBoostClassifier_scatter.png"
     },
     "XGBClassifier": {
-        "score": 95,
+        "score": 94,
         "plot": "../static/images/XGBClassifier_scatter.png"
     },
     "LGBMClassifier": {
-        "score": 96,
+        "score": 100,
         "plot": "../static/images/LGBMClassifier_scatter.png"
     },
     "GaussianNB": {
-        "score": 97,
+        "score": 100,
         "plot": "../static/images/GaussianNB_scatter.png"
     },
     "MLPClassifier": {
-        "score": 81,
+        "score": 97,
         "plot": "../static/images/MLPClassifier_scatter.png"
     },
-    "LinearRegression": {
-        "score": 72,
-        "plot": "../static/images/LinearRegression_scatter.png"
-    },
     "Ridge": {
-        "score": 74,
+        "score": 88,
         "plot": "../static/images/Ridge_scatter.png"
     },
     "Lasso": {
-        "score": 62,
+        "score": 44,
         "plot": "../static/images/Lasso_scatter.png"
     },
     "ElasticNet": {
-        "score": 67,
+        "score": 57,
         "plot": "../static/images/ElasticNet_scatter.png"
     },
+    "LinearRegression": {
+        "score": 88,
+        "plot": "../static/images/LinearRegression_scatter.png"
+    },
+    "LogisticRegression": {
+        "score": 97,
+        "plot": "../static/images/LogisticRegression_scatter.png"
+    },
     "KNeighborsRegressor": {
-        "score": 87,
+        "score": 50,
         "plot": "../static/images/KNeighborsRegressor_scatter.png"
     },
     "SVR": {
-        "score": 82,
+        "score": 55,
         "plot": "../static/images/SVR_scatter.png"
     },
     "DecisionTreeRegressor": {
-        "score": 73,
+        "score": 71,
         "plot": "../static/images/DecisionTreeRegressor_scatter.png"
     },
     "RandomForestRegressor": {
-        "score": 85,
+        "score": 88,
         "plot": "../static/images/RandomForestRegressor_scatter.png"
     },
     "GradientBoostingRegressor": {
-        "score": 86,
+        "score": 75,
         "plot": "../static/images/GradientBoostingRegressor_scatter.png"
     },
     "AdaBoostRegressor": {
-        "score": 86,
+        "score": 95,
         "plot": "../static/images/AdaBoostRegressor_scatter.png"
     },
     "XGBRegressor": {
-        "score": 79,
+        "score": 67,
         "plot": "../static/images/XGBRegressor_scatter.png"
     },
     "LGBMRegressor": {
-        "score": 86,
+        "score": 90,
         "plot": "../static/images/LGBMRegressor_scatter.png"
     },
     "MLPRegressor": {
-        "score": -27,
+        "score": -84929,
         "plot": "../static/images/MLPRegressor_scatter.png"
     },
     "BayesianRidge": {
-        "score": 74,
+        "score": 88,
         "plot": "../static/images/BayesianRidge_scatter.png"
     },
     "HuberRegressor": {
-        "score": 51,
+        "score": 84,
         "plot": "../static/images/HuberRegressor_scatter.png"
+    },
+    "ARDRegression": {
+        "score": 84,
+        "plot": "../static/images/ARDRegression_scatter.png"
     }
 }

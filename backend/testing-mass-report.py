@@ -15,7 +15,7 @@ all_scores={}
 
 plot_data=[]
 
-models_list=open("../Models_list.txt","r").readlines()
+models_list=open("./static/Models_list.txt","r").readlines()
 
 for model in models_list:
     if model.startswith("#") or model.startswith("from sklearn.datasets"):
@@ -32,7 +32,7 @@ for model in models_list:
         model_object = model_class()
     
     
-    dataset_name=models_list[26]
+    dataset_name=models_list[32]
     dataset_name=dataset_name.replace("\n","")
     exec(dataset_name)
     
