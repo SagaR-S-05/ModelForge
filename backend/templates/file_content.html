@@ -12,7 +12,7 @@
       <p>File Name: <strong>{{filename}}</strong></p>
    
       <form action="/file/result" method="post">
-        <!-- Left side - Chart/Table (2/3 width) -->
+        <!-- Left side - Chart/Table -->
         <div class="chart-container">
           <h3>Select the output feature of your model:</h3>
           <div class="fixTableHead">
@@ -38,9 +38,9 @@
           </div>
         </div>
         
-        <!-- Right side - Controls (1/3 width) -->
+        <!-- Right side - Controls -->
         <div class="controls-container">
-          <!-- Model Selection (top right) -->
+          <!-- Model Selection -->
           <div class="model-selection">
             <h3>Model Selection</h3>
             <div class="form-row">
@@ -64,7 +64,7 @@
             {%endif%}
           </div>
          
-          <!-- Feature Comparison (bottom right) -->
+          <!-- Feature Comparison -->
           {%if multi_column%}
           <div class="feature-comparison">
             <h3>Feature Comparison</h3>
@@ -87,10 +87,11 @@
             </div>
           </div>
           {%endif%}
-        </div>
-       
-        <div class="button-container">
-          <button type="submit">Submit</button>
+          
+          <!-- Submit button -->
+          <div class="button-container">
+            <button type="submit">Submit</button>
+          </div>
         </div>
       </form>
     </div>

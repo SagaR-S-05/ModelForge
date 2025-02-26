@@ -20,13 +20,13 @@
           <div class="images-container">
             <div class="image-card">
               <h4>Performance Chart</h4>
-              <img src="{{image1}}" alt="Model 1 Performance Chart" />
+              <img src="{{image1}}" alt="Model 1 Performance Chart" class="fullscreen-image" />
             </div>
             
             {%if confusionMatrix1%}
             <div class="image-card">
               <h4>Confusion Matrix</h4>
-              <img src="{{confusionMatrix1}}" alt="Model 1 Confusion Matrix" />
+              <img src="{{confusionMatrix1}}" alt="Model 1 Confusion Matrix" class="fullscreen-image" />
             </div>
             {%endif%}
           </div>
@@ -47,13 +47,13 @@
           <div class="images-container">
             <div class="image-card">
               <h4>Performance Chart</h4>
-              <img src="{{image2}}" alt="Model 2 Performance Chart" />
+              <img src="{{image2}}" alt="Model 2 Performance Chart" class="fullscreen-image" />
             </div>
             
             {%if confusionMatrix2%}
             <div class="image-card">
               <h4>Confusion Matrix</h4>
-              <img src="{{confusionMatrix2}}" alt="Model 2 Confusion Matrix" />
+              <img src="{{confusionMatrix2}}" alt="Model 2 Confusion Matrix" class="fullscreen-image" />
             </div>
             {%endif%}
           </div>
@@ -72,10 +72,67 @@
       <div class="comparison-section">
         <h3>Model Comparison</h3>
         <div class="image-card comparison">
-          <img src="{{compare_image}}" alt="Models Comparison" />
+          <img src="{{compare_image}}" alt="Models Comparison" class="fullscreen-image" />
         </div>
       </div>
       {%endif%}
     </div>
+
+    <!-- Fullscreen Modal -->
+    <div id="fullscreenModal" class="fullscreen-modal">
+      <span class="close-modal">&times;</span>
+      <img class="fullscreen-modal-content" id="fullscreenImage">
+      <div id="imageCaption"></div>
+    </div>
+
+    <!-- JavaScript for fullscreen functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Get modal elements
+        const modal = document.getElementById('fullscreenModal');
+        const modalImg = document.getElementById('fullscreenImage');
+        const captionText = document.getElementById('imageCaption');
+        const closeBtn = document.getElementsByClassName('close-modal')[0];
+        
+        // Get all images with the fullscreen-image class
+        const images = document.getElementsByClassName('fullscreen-image');
+        
+        // Add click event to each image
+        for (let i = 0; i < images.length; i++) {
+          images[i].onclick = function() {
+            modal.style.display = 'block';
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+            
+            // Disable scrolling on the body
+            document.body.style.overflow = 'hidden';
+          }
+        }
+        
+        // Close modal when clicking the × button
+        closeBtn.onclick = closeModal;
+        
+        // Close modal when clicking outside the image
+        modal.onclick = function(event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+          }
+        });
+        
+        function closeModal() {
+          modal.style.display = 'none';
+          
+          // Re-enable scrolling on the body
+          document.body.style.overflow = 'auto';
+        }
+      });
+    </script>
   </body>
 </html>
