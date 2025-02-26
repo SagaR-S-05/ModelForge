@@ -92,3 +92,16 @@ def Model_list():
             model=model.replace("\n","")
         new_list.append(model.strip().split("import ")[1])
     return new_list
+
+def compare_columns(df,com_fea1,com_fea2):
+    plt.ioff()
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=df[com_fea1], y=df[com_fea2], hue=df[com_fea1], palette='Set1')
+    plt.title(f'{com_fea1} vs {com_fea2}')
+    plt.xlabel(com_fea1)
+    plt.ylabel(com_fea2)
+    plt.tight_layout()
+    image_name=f"./static/images/{com_fea1}_{com_fea2}_scatter.png"
+    plt.savefig(image_name)
+    plt.close()
+    return image_name

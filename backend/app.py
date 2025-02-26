@@ -24,7 +24,7 @@ def file():
     with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
-    return render_template("index1.html",data=data,filename=f.filename,render=True,model_based=model_based,multi_column=multi_column,models=Model_list())
+    return render_template("file.html",data=data,filename=f.filename,render=True,model_based=model_based,multi_column=multi_column,models=Model_list())
 
 @app.route("/file/result",methods=["POST"])
 def file_result():
@@ -35,7 +35,15 @@ def file_result():
     model_type1=request.form["model1"]
     model_type2=request.form.get("model2")
     
+    com_fea1=request.form.get("com_fea1")
+    com_fea2=request.form.get("com_fea2")
     
+    compare_image=None
+    
+    if com_fea1 is not None and com_fea2 is not None:
+        print(com_fea1,com_fea2)
+        compare_image="."+compare_columns(data,com_fea1,com_fea2)
+        print(compare_image)
     
     if model_type2 is not None:
         print(session)
@@ -63,15 +71,14 @@ def file_result():
         score2=model2.score(df.drop(columns=[feature]),df[feature])
         max_value=max(df[feature])
         min_value=min(df[feature])
-        return render_template( "index1.html",data=data,filename=filename,
+        return render_template( "index1.html",filename=filename,
                                 image1=image1,image2=image2
                                 ,model_path="."+model_path1,
                                 score1=score1,score2=score2,
-                                predict2=predict2,predict1=predict1,feature=feature,len=len
-                                ,activate=True,max_value=max_value,min_value=min_value,
+                                predict2=predict2,predict1=predict1,feature=feature,
                                 confusionMatrix1=image_con1,
-                                confusionMatrix2=image_con2
-                                ,render=True,
+                                confusionMatrix2=image_con2,
+                                compare_image=compare_image
                                 )
     print(session)
     df=label_encoder(df=data,out=feature)
@@ -90,12 +97,11 @@ def file_result():
     score1=model1.score(df.drop(columns=[feature]),df[feature]) 
     max_value=max(df[feature])
     min_value=min(df[feature])
-    return render_template( "index1.html",data=data,filename=filename,
+    return render_template( "index1.html",filename=filename,
                             image1=image1,model_path="."+model_path1,
-                            score1=score1,predict1=predict1,feature=feature,len=len
-                            ,activate=True,max_value=max_value,min_value=min_value,
-                            confusionMatrix1=image_con1
-                            ,render=True,
+                            score1=score1,predict1=predict1,feature=feature,
+                            confusionMatrix1=image_con1,
+                            compare_image=compare_image
                             )
 
 
