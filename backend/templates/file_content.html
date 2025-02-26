@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
     <title>Document</title>
-</head>
-<body>
-    {%if render%}
+  </head>
+  <body>
     <p>File Name: {{filename}}</p>
     <form action="/file/result" method="post">
-      {%if not activate%}
       <p>Select the output feature of your model:</p>
-      {%endif%}
       <div class="fixTableHead">
         <table border="1" id="table">
           <thead>
             {% for feature in data.columns %}
             <th>
-              {%if not activate%}
               <input type="radio" name="feature" value="{{feature}}" />
-              {%endif%} {{feature}}
+              {{feature}}
             </th>
             {% endfor %}
           </thead>
@@ -36,7 +32,6 @@
         </table>
       </div>
       <br />
-      {%if not activate%}
       <div>
         <label for="model1">Model:</label>
         <select name="model1" id="model1">
@@ -55,12 +50,12 @@
         </select>
         {%endif%}
       </div>
-      <br/>
+      <br />
       {%if multi_column%}
       <label for="com_fea1">feature1:</label>
       <select name="com_fea1" id="com_fea1" required>
         {% for feature in data.columns %}
-          <option value="{{feature}}">{{feature}}</option>
+        <option value="{{feature}}">{{feature}}</option>
         {% endfor %}
       </select>
       <br />
@@ -68,34 +63,13 @@
       <label for="com_fea2">feature2:</label>
       <select name="com_fea2" id="com_fea2" required>
         {% for feature in data.columns %}
-          <option value="{{feature}}">{{feature}}</option>
+        <option value="{{feature}}">{{feature}}</option>
         {% endfor %}
       </select>
       {%endif%}
-      <div
-        style="
-          display: flex;
-          justify-content: left;
-          margin-top: 10px;
-          padding: 10px;
-        "
-      >
-        <button
-          type="submit"
-          style="
-            width: 100px;
-            height: 30px;
-            background-color: #000000;
-            color: #fff;
-            border-radius: 5px;
-            border: none;
-          "
-        >
-          Submit
-        </button>
+      <div>
+        <button type="submit">Submit</button>
       </div>
-      {%endif%}
     </form>
-    {%endif%}
-</body>
+  </body>
 </html>
