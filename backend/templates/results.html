@@ -3,31 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Model Results</title>
     <link rel="stylesheet" href="../static/style.css" />
   </head>
-
   <body>
-    <p>File Name: {{filename}}</p>
-    <p>{{model_name1}} Score: {{score1*100}}%</p>
-
-    <img src="{{image1}}" alt="image" />
-    {%if confusionMatrix1%}
-    <img src="{{confusionMatrix1}}" alt="confusion" />
-    {%endif%}
-    <a href="{{model_path1}}" download="{{filename}}">
-      <button type="button">Download</button>
-    </a>
-    {%if score2%}
-    <p>{{model_name2}} Score: {{score2*100}}%</p>
-    <img src="{{image2}}" alt="image" />
-    <a href="{{model_path2}}" download="{{filename}}">
-      <button type="button">Download</button>
-    </a>
-    {%endif%} {%if confusionMatrix2%}
-    <img src="{{confusionMatrix2}}" alt="confusion" />
-    {%endif%} {%if compare_image%}
-    <img src="{{compare_image}}" alt="compare" />
-    {%endif%}
+    <div class="results-container">
+      <h2>Analysis Results</h2>
+      <p class="filename">File Name: <strong>{{filename}}</strong></p>
+      
+      <div class="results-grid">
+        <!-- Model 1 Results -->
+        <div class="model-results">
+          <h3>{{model_name1}} Results</h3>
+          <p class="score">Accuracy Score: <span class="highlight">{{score1*100}}%</span></p>
+          
+          <div class="images-container">
+            <div class="image-card">
+              <h4>Performance Chart</h4>
+              <img src="{{image1}}" alt="Model 1 Performance Chart" />
+            </div>
+            
+            {%if confusionMatrix1%}
+            <div class="image-card">
+              <h4>Confusion Matrix</h4>
+              <img src="{{confusionMatrix1}}" alt="Model 1 Confusion Matrix" />
+            </div>
+            {%endif%}
+          </div>
+          
+          <div class="button-container">
+            <a href="{{model_path1}}" download="{{filename}}">
+              <button type="button">Download Model</button>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Model 2 Results (if available) -->
+        {%if score2%}
+        <div class="model-results">
+          <h3>{{model_name2}} Results</h3>
+          <p class="score">Accuracy Score: <span class="highlight">{{score2*100}}%</span></p>
+          
+          <div class="images-container">
+            <div class="image-card">
+              <h4>Performance Chart</h4>
+              <img src="{{image2}}" alt="Model 2 Performance Chart" />
+            </div>
+            
+            {%if confusionMatrix2%}
+            <div class="image-card">
+              <h4>Confusion Matrix</h4>
+              <img src="{{confusionMatrix2}}" alt="Model 2 Confusion Matrix" />
+            </div>
+            {%endif%}
+          </div>
+          
+          <div class="button-container">
+            <a href="{{model_path2}}" download="{{filename}}">
+              <button type="button">Download Model</button>
+            </a>
+          </div>
+        </div>
+        {%endif%}
+      </div>
+      
+      <!-- Comparison Image (if available) -->
+      {%if compare_image%}
+      <div class="comparison-section">
+        <h3>Model Comparison</h3>
+        <div class="image-card comparison">
+          <img src="{{compare_image}}" alt="Models Comparison" />
+        </div>
+      </div>
+      {%endif%}
+    </div>
   </body>
 </html>
