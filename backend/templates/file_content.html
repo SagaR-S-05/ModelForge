@@ -4,72 +4,96 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/style.css" />
-    <title>Document</title>
+    <title>Model Selector</title>
   </head>
   <body>
-    <p>File Name: {{filename}}</p>
-    <form action="/file/result" method="post">
-      <p>Select the output feature of your model:</p>
-      <div class="fixTableHead">
-        <table border="1" id="table">
-          <thead>
-            {% for feature in data.columns %}
-            <th>
-              <input type="radio" name="feature" value="{{feature}}" />
-              {{feature}}
-            </th>
-            {% endfor %}
-          </thead>
-          <tbody id="tableBody">
-            {% for index,row in data.iterrows() %}
-            <tr>
-              {% for column in data.columns %}
-              <td>{{row[column]}}</td>
-              {% endfor %}
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-      <br />
-      <div>
-        <label for="model1">Model 1:</label>
-        <select name="model1" id="model1">
-          {%if models%} {%for i in models%}
-          <option value="{{i}}">{{i}}</option>
-          {%endfor%} {%endif%}
-        </select>
-        <br/>
-        <br/>
-        {%if model_based%}
-        <label for="model2">Model 2:</label>
-        <select name="model2" id="model2">
-          {%if models%} {%for i in models%}
-            <option value="{{i}}">{{i}}</option>
-          {%endfor%} {%endif%}
-        </select>
-        {%endif%}
-      </div>
-      <br />
-      {%if multi_column%}
-      <label for="com_fea1">feature1:</label>
-      <select name="com_fea1" id="com_fea1" required>
-        {% for feature in data.columns %}
-        <option value="{{feature}}">{{feature}}</option>
-        {% endfor %}
-      </select>
-      <br />
-      <br />
-      <label for="com_fea2">feature2:</label>
-      <select name="com_fea2" id="com_fea2" required>
-        {% for feature in data.columns %}
-        <option value="{{feature}}">{{feature}}</option>
-        {% endfor %}
-      </select>
-      {%endif%}
-      <div class="button-container">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+    <div class="form-section">
+      <h2>File Analysis</h2>
+      <p>File Name: <strong>{{filename}}</strong></p>
+   
+      <form action="/file/result" method="post">
+        <!-- Left side - Chart/Table -->
+        <div class="chart-container">
+          <h3>Select the output feature of your model:</h3>
+          <div class="fixTableHead">
+            <table id="table">
+              <thead>
+                {% for feature in data.columns %}
+                <th>
+                  <input type="radio" name="feature" value="{{feature}}" />
+                  {{feature}}
+                </th>
+                {% endfor %}
+              </thead>
+              <tbody id="tableBody">
+                {% for index,row in data.iterrows() %}
+                <tr>
+                  {% for column in data.columns %}
+                  <td>{{row[column]}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- Right side - Controls -->
+        <div class="controls-container">
+          <!-- Model Selection -->
+          <div class="model-selection">
+            <h3>Model Selection</h3>
+            <div class="form-row">
+              <label for="model1">Model 1:</label>
+              <select name="model1" id="model1">
+                {%if models%} {%for i in models%}
+                <option value="{{i}}">{{i}}</option>
+                {%endfor%} {%endif%}
+              </select>
+            </div>
+           
+            {%if model_based%}
+            <div class="form-row">
+              <label for="model2">Model 2:</label>
+              <select name="model2" id="model2">
+                {%if models%} {%for i in models%}
+                  <option value="{{i}}">{{i}}</option>
+                {%endfor%} {%endif%}
+              </select>
+            </div>
+            {%endif%}
+          </div>
+         
+          <!-- Feature Comparison -->
+          {%if multi_column%}
+          <div class="feature-comparison">
+            <h3>Feature Comparison</h3>
+            <div class="form-row">
+              <label for="com_fea1">Feature 1:</label>
+              <select name="com_fea1" id="com_fea1" required>
+                {% for feature in data.columns %}
+                <option value="{{feature}}">{{feature}}</option>
+                {% endfor %}
+              </select>
+            </div>
+           
+            <div class="form-row">
+              <label for="com_fea2">Feature 2:</label>
+              <select name="com_fea2" id="com_fea2" required>
+                {% for feature in data.columns %}
+                <option value="{{feature}}">{{feature}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          {%endif%}
+          
+          <!-- Submit button -->
+          <div class="button-container">
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
