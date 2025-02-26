@@ -1,8 +1,6 @@
 design/
-static/
 .venv/
 *.ipynb
-*.txt
 *.pkl
 *.log
 *.png
