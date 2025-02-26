@@ -61,7 +61,7 @@
         {%endif%}
     </form>
     {%if activate%}
-    <p>Score: {{score}}</p>
+    <p>Score: {{score*100}}%</p>
     <!--<canvas id="myChart" style="width:100%;max-width:900px;padding-left: 300px;"></canvas>-->
     <img src="{{image}}" alt="image">
     {%if confusionMatrix%}

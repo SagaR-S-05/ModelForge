@@ -1,14 +1,8 @@
 from flask import Flask,render_template,request,session
-from werkzeug.datastructures import FileStorage
 import pandas as pd
 import pickle
-from sklearn.preprocessing import LabelEncoder 
-from sklearn.ensemble import RandomForestRegressor
 import matplotlib
 matplotlib.use('Agg')
-from sklearn.metrics import ConfusionMatrixDisplay,confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
 from model import *
 app=Flask(__name__)
 
@@ -17,7 +11,7 @@ app.config["SESSION_PERMANENT"] = False
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index1.html")
 
 @app.route("/file",methods=["POST"])
 def file():
@@ -27,7 +21,7 @@ def file():
     with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
-    return render_template("index.html",data=data,filename=f.filename,render=True,models=Model_list())
+    return render_template("index1.html",data=data,filename=f.filename,render=True,models=Model_list())
 
 @app.route("/file/result",methods=["POST"])
 def file_result():
@@ -48,10 +42,10 @@ def file_result():
     print(image,image_con)
     predict=model.predict(df.drop(columns=[feature]))
     actual=df[feature]
-    score=model.score(df.drop(columns=[feature]),df[feature])
+    score=model.score(df.drop(columns=[feature]),df[feature]) 
     max_value=max(df[feature])
     min_value=min(df[feature])
-    return render_template( "index.html",data=data,filename=filename,
+    return render_template( "index1.html",data=data,filename=filename,
                             image=image,model_path="."+model_path,
                             score=score,predict=predict,feature=feature,len=len
                             ,activate=True,max_value=max_value,min_value=min_value,

@@ -2,11 +2,10 @@ design/
 static/
 .venv/
 *.ipynb
-*.csv
-*.json
 *.txt
 *.pkl
 *.log
 *.png
 !model-forge-logo.png
 backend/__pycache__/
+unstructured
