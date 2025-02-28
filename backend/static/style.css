@@ -16,8 +16,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== FORM PAGE STYLES ===== */
-/* Add to your CSS file */
 .product-name {
   font-family: 'Orbitron', sans-serif;
   color: var(--primary-green);
@@ -25,7 +23,6 @@ body {
   font-weight: 600;
 }
 
-/* Optional: If you want to adjust the h2 to accommodate the product name better */
 h2 {
   display: flex;
   justify-content: space-between;
@@ -35,7 +32,6 @@ h2 {
   padding-bottom: 10px;
 }
 
-/* Main content wrapper */
 .form-section {
   background-color: rgba(10, 25, 47, 0.9);
   padding: 20px;
@@ -48,14 +44,12 @@ h2 {
   margin: 0 auto;
 }
 
-/* Main flexbox container */
 form {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-/* Left column - Chart/Table (2/3 width) */
 .chart-container {
   flex: 2;
   min-width: 60%;
@@ -63,7 +57,6 @@ form {
   flex-direction: column;
 }
 
-/* Right column - Controls (1/3 width) */
 .controls-container {
   flex: 1;
   min-width: 30%;
@@ -116,7 +109,6 @@ tr:hover {
   background-color: rgba(76, 175, 80, 0.2);
 }
 
-/* Align model selection with table header and stack it above feature comparison */
 .model-selection {
   background-color: rgba(10, 25, 47, 0.9);
   padding: 15px;
@@ -129,10 +121,8 @@ tr:hover {
   margin-top: 0;
   position: relative;
   top: 0;
-   /* Space between model selection and feature comparison */
 }
 
-/* Ensure controls container is properly aligned */
 .controls-container {
   flex: 1;
   min-width: 30%;
@@ -140,11 +130,10 @@ tr:hover {
   flex-direction: column;
   gap: 20px;
   height: fit-content;
-  padding-top: 0; /* Remove any top padding */
-  margin-top: 39px; /* Remove any top margin */
+  padding-top: 0;
+  margin-top: 39px;
 }
 
-/* Make sure the feature comparison is positioned below model selection */
 .feature-comparison {
   background-color: rgba(10, 25, 47, 0.9);
   padding: 15px;
@@ -153,18 +142,14 @@ tr:hover {
   border: 1px solid var(--primary-green);
   border-left: 4px solid var(--primary-green);
   width: 100%;
-  margin-top: 20px; /* Ensure there's no additional space at the top */
+  margin-top: 20px;
 }
 
-/* Controls button container */
 .controls-button-container {
   margin-top: 20px;
   width: 100%;
 }
 
-/* ===== RESULTS PAGE STYLES ===== */
-
-/* Results container */
 .results-container {
   background-color: rgba(10, 25, 47, 0.9);
   padding: 25px;
@@ -176,7 +161,6 @@ tr:hover {
   margin: 0 auto;
 }
 
-/* Results grid for two models */
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -184,7 +168,6 @@ tr:hover {
   margin-bottom: 30px;
 }
 
-/* Individual model results */
 .model-results {
   background-color: rgba(10, 25, 47, 0.8);
   padding: 20px;
@@ -193,7 +176,6 @@ tr:hover {
   box-shadow: var(--shadow);
 }
 
-/* Images container */
 .images-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -201,7 +183,6 @@ tr:hover {
   margin-bottom: 20px;
 }
 
-/* Image card */
 .image-card {
   background-color: rgba(10, 25, 47, 0.7);
   border-radius: var(--border-radius);
@@ -214,7 +195,6 @@ tr:hover {
   transform: scale(1.01);
 }
 
-/* Comparison section */
 .comparison-section {
   margin-top: 30px;
   padding-top: 20px;
@@ -226,14 +206,12 @@ tr:hover {
   margin: 0 auto;
 }
 
-/* Highlight for scores */
 .highlight {
   color: var(--primary-green);
   font-weight: bold;
   font-size: 1.2em;
 }
 
-/* Score styling */
 .score {
   font-size: 1.1em;
   margin-bottom: 20px;
@@ -243,15 +221,12 @@ tr:hover {
   display: inline-block;
 }
 
-/* Filename styling */
 .filename {
   font-size: 1.1em;
   margin-bottom: 25px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--primary-green);
 }
-
-/* ===== SHARED STYLES ===== */
 
 button {
   width: 160px;
@@ -267,7 +242,7 @@ button {
 }
 
 button:hover {
-  background-color: #2d8630;  /* Darker green on hover */
+  background-color: #2d8630;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
@@ -302,7 +277,6 @@ p {
   color: var(--text-light);
 }
 
-/* Form elements styling */
 select, input[type="radio"] {
   margin: 5px;
   padding: 8px;
@@ -330,7 +304,6 @@ label {
   margin-right: 10px;
 }
 
-/* Heading styling */
 h1, h2, h3, h4 {
   color: var(--primary-green);
   margin-top: 0;
@@ -355,18 +328,15 @@ h4 {
   width: 100%;
 }
 
-/* Focus states */
 select:focus, input:focus {
   outline: 2px solid var(--primary-green);
   outline-offset: 1px;
 }
 
-/* Radio button custom styling */
 input[type="radio"] {
   accent-color: var(--primary-green);
 }
 
-/* Responsive adjustments */
 @media (max-width: 968px) {
   form {
     flex-direction: column;
@@ -387,9 +357,6 @@ input[type="radio"] {
   }
 }
 
-/* Add these styles to your existing CSS file */
-
-/* Fullscreen image styling */
 .fullscreen-image {
   cursor: pointer;
   transition: filter 0.3s ease;
@@ -399,7 +366,6 @@ input[type="radio"] {
   filter: brightness(1.1);
 }
 
-/* Fullscreen Modal */
 .fullscreen-modal {
   display: none;
   position: fixed;
@@ -413,7 +379,6 @@ input[type="radio"] {
   backdrop-filter: blur(5px);
 }
 
-/* Modal Content (Image) */
 .fullscreen-modal-content {
   margin: auto;
   display: block;
@@ -427,7 +392,6 @@ input[type="radio"] {
   box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
 }
 
-/* Caption text */
 #imageCaption {
   margin: auto;
   display: block;
@@ -447,7 +411,6 @@ input[type="radio"] {
   border: 1px solid var(--primary-green);
 }
 
-/* Close Button */
 .close-modal {
   position: absolute;
   top: 15px;
@@ -467,7 +430,6 @@ input[type="radio"] {
   transform: scale(1.1);
 }
 
-/* Animation */
 .fullscreen-modal {
   animation: fadeIn 0.3s;
 }
@@ -477,7 +439,6 @@ input[type="radio"] {
   to {opacity: 1}
 }
 
-/* Responsive adjustments for smaller screens */
 @media only screen and (max-width: 700px) {
   .fullscreen-modal-content {
     width: 95%;

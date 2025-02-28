@@ -13,7 +13,6 @@
       <p class="filename">File Name: <strong>{{filename}}</strong></p>
       
       <div class="results-grid">
-        <!-- Model 1 Results -->
         <div class="model-results">
           <h3>{{model_name1}} Results</h3>
           <p class="score">Accuracy Score: <span class="highlight">{{score1*100}}%</span></p>
@@ -39,7 +38,6 @@
           </div>
         </div>
         
-        <!-- Model 2 Results (if available) -->
         {%if score2%}
         <div class="model-results">
           <h3>{{model_name2}} Results</h3>
@@ -68,7 +66,6 @@
         {%endif%}
       </div>
       
-      <!-- Comparison Image (if available) -->
       {%if compare_image%}
       <div class="comparison-section">
         <h3>Model Comparison</h3>
@@ -79,48 +76,39 @@
       {%endif%}
     </div>
 
-    <!-- Fullscreen Modal -->
     <div id="fullscreenModal" class="fullscreen-modal">
       <span class="close-modal">&times;</span>
       <img class="fullscreen-modal-content" id="fullscreenImage">
       <div id="imageCaption"></div>
     </div>
 
-    <!-- JavaScript for fullscreen functionality -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Get modal elements
         const modal = document.getElementById('fullscreenModal');
         const modalImg = document.getElementById('fullscreenImage');
         const captionText = document.getElementById('imageCaption');
         const closeBtn = document.getElementsByClassName('close-modal')[0];
         
-        // Get all images with the fullscreen-image class
         const images = document.getElementsByClassName('fullscreen-image');
         
-        // Add click event to each image
         for (let i = 0; i < images.length; i++) {
           images[i].onclick = function() {
             modal.style.display = 'block';
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
             
-            // Disable scrolling on the body
             document.body.style.overflow = 'hidden';
           }
         }
         
-        // Close modal when clicking the × button
         closeBtn.onclick = closeModal;
         
-        // Close modal when clicking outside the image
         modal.onclick = function(event) {
           if (event.target === modal) {
             closeModal();
           }
         }
         
-        // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
           if (event.key === 'Escape' && modal.style.display === 'block') {
             closeModal();
@@ -130,7 +118,6 @@
         function closeModal() {
           modal.style.display = 'none';
           
-          // Re-enable scrolling on the body
           document.body.style.overflow = 'auto';
         }
       });
