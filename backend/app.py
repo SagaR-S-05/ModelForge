@@ -24,7 +24,7 @@ def file():
     with open(f"Test-data/{f.filename}.data","wb") as file:
         pickle.dump(data,file)
     session["filename"]=f.filename
-    return render_template("file_content.html",data=data,filename=f.filename,model_based=model_based,multi_column=multi_column,models=Model_list())
+    return render_template("file_content.html",data=data.head(),filename=f.filename,model_based=model_based,multi_column=multi_column,models=Model_list())
 
 @app.route("/file/result",methods=["POST"])
 def file_result():
